@@ -7,7 +7,6 @@ const AdminJsSequelize = require('@adminjs/sequelize')
 
 // const dbcon = require('../dbcon')
 const User = require('../models/User')
-// console.log(dbs);
 
 const dbc = require('../dbcon')
 
