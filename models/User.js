@@ -1,24 +1,21 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('test', 'root', 'example', {
-    dialect: 'mariadb',
-    port: 3307,
-    dialectOptions: {
-      // Your mariadb options here
-      connectTimeout: 1000
-    }
-  });
-
-// sequelize.authenticate().then(()=> console.log('DB Connected')).catch(err => console.log(err))
+const sequelize = require('../dbcon');
 
 const User = sequelize.define('User', {
-  // Model attributes are defined here
-  firstName: {
+username: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  lastName: {
+    },
+  password: {
     type: DataTypes.STRING
-    // allowNull defaults to true
+  },
+  status: {
+    type: DataTypes.ENUM,
+    values: ['active', 'pending', 'deleted']
+  },
+  role: {
+    type: DataTypes.ENUM,
+    values: ['farmer', 'counselor', 'admin']
   },
   createdAt: {
       type: DataTypes.DATE
@@ -32,5 +29,12 @@ const User = sequelize.define('User', {
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
+// (async () => {
+//     await sequelize.sync({ force: true });
+//     console.log("The table for the User model was just (re)created!");
+
+//   })();
+
+
 
 module.exports = User

@@ -9,21 +9,14 @@ const AdminJsSequelize = require('@adminjs/sequelize')
 const User = require('../models/User')
 // console.log(dbs);
 
-const sequelize = new Sequelize('test', 'root', 'example', {
-    dialect: 'mariadb',
-    port: 3307,
-    dialectOptions: {
-      // Your mariadb options here
-      connectTimeout: 1000
-    }
-  });
-const dbs = sequelize.config.database
+const dbc = require('../dbcon')
+
 
 AdminJS.registerAdapter(AdminJsSequelize)
 
 
 const adminJs = new AdminJS({
-    databases: [sequelize],
+    databases: [dbc],
     rootPath: '/admin',
     resources: [User]
   })
