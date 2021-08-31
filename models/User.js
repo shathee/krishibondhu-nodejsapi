@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../dbcon');
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/dbcon');
 
 const User = sequelize.define('User', {
 username: {
@@ -27,13 +28,7 @@ username: {
   // Other model options go here
 });
 
-// `sequelize.define` also returns the model
-// console.log(User === sequelize.models.User); // true
-// (async () => {
-//     await sequelize.sync({ force: true });
-//     console.log("The table for the User model was just (re)created!");
 
-//   })();
 
 
 
